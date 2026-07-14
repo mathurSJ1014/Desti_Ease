@@ -298,5 +298,3 @@ chatbotSendBtn.addEventListener('click', () => sendMessage());
 chatbotInput.addEventListener('keypress', (e) => {
     if (e.key === 'Enter') sendMessage();
 });
-
-//  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
