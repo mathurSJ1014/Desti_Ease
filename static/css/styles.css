@@ -1,0 +1,660 @@
+/* General Styles */
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f4f4f4;
+    color: #333;
+}
+
+/* Keyframe Animation for Water Drop Effect */
+@keyframes waterDrop {
+    0% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    70% {
+        transform: translateY(20px);
+        opacity: 0.7;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* By default, no animation */
+#tagline span {
+    display: inline-block;
+    font-size: 24px; /* Adjust font size as needed */
+    transition: transform 0.3s ease;
+}
+
+/* On hover, apply the water drop animation */
+#tagline:hover span {
+    animation: waterDrop 1s ease-in-out;
+}
+
+/* Additional interactivity on hover */
+#tagline span:hover {
+    transform: scale(1.2) rotate(10deg); /* Characters scale and rotate on hover */
+}
+
+/* Set custom properties for each character */
+#tagline span:nth-child(1) { animation-delay: 0.1s; }
+#tagline span:nth-child(2) { animation-delay: 0.2s; }
+#tagline span:nth-child(3) { animation-delay: 0.3s; }
+#tagline span:nth-child(4) { animation-delay: 0.4s; }
+#tagline span:nth-child(5) { animation-delay: 0.5s; }
+#tagline span:nth-child(6) { animation-delay: 0.6s; }
+#tagline span:nth-child(7) { animation-delay: 0.7s; }
+#tagline span:nth-child(8) { animation-delay: 0.8s; }
+#tagline span:nth-child(9) { animation-delay: 0.9s; }
+#tagline span:nth-child(10) { animation-delay: 1s; }
+/* Add delays for additional characters as needed */
+
+/* Sticky Header */
+header {
+    background: #61b187;
+    color: white;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;  /* Ensure it stays on top of other content */
+    transition: transform 0.3s ease-out, top 0.3s ease-out;
+}
+
+header.hidden {
+    transform: translateY(-100%);
+}
+
+/* Logo and Navigation */
+.logo a {
+    color: white;
+    text-decoration: none;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.logo-img {
+    height: 50px;
+    width: auto;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+nav ul li a:hover,
+nav ul li a.active {
+    color: white;
+    text-decoration: none;
+}
+
+/* Hamburger Menu Styles */
+#hamburger-nav {
+    display: none;
+}
+
+.hamburger-menu {
+    position: relative;
+    display: inline-block;
+}
+
+.hamburger-icon {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 24px;
+    width: 30px;
+    cursor: pointer;
+}
+
+.hamburger-icon span {
+    width: 100%;
+    height: 2px;
+    background-color: white;
+    transition: all 0.3s ease-in-out;
+}
+
+.menu-links {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: white;
+    width: fit-content;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-in-out;
+}
+
+.menu-links a {
+    display: block;
+    padding: 10px;
+    text-align: center;
+    font-size: 18px;
+    color: #45a049;
+    text-decoration: none;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.menu-links li {
+    list-style: none;
+}
+
+.menu-links.open {
+    max-height: 300px;
+}
+
+.hamburger-icon.open span:first-child {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.hamburger-icon.open span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger-icon.open span:last-child {
+    transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* Hero Section Styles */
+.hero {
+    text-align: center;
+    padding: 60px;
+    position: relative;
+    color: white;
+    font-weight: bold;
+    background-size: 100% 100%; /* Stretch the background image to cover the whole section */
+    background-position: center center; /* Ensure the background image is centered */
+    background-repeat: no-repeat; /* Prevent repetition */
+}
+
+/* Add a pseudo-element for the blurred and faded background effect */
+.hero::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.8); /* More transparent overlay */
+    filter: blur(50px) saturate(0.4); /* Apply blur and reduce saturation */
+    z-index: -1; /* Place it behind the text */
+}
+
+/* Hero Text Styling */
+.hero-content {
+    position: relative;
+    z-index: 1; /* Ensure text is above the overlay */
+}
+
+.hero-title {
+    font-size: 48px;
+    margin: 0;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+}
+
+.hero-description {
+    font-size: 24px;
+    margin-top: 20px;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+}
+
+/* Buttons Styling */
+.hero-actions {
+    margin-top: 30px;
+}
+
+.hero-button {
+    padding: 15px 30px;
+    margin: 10px;
+    background-color: #61b187;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 5px;
+    text-decoration: none;
+    display: inline-block;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.hero-button:hover {
+    background-color: #ff476f;
+    transform: scale(1.05);
+}
+
+.hero-button.secondary {
+    background-color: #296746;
+    color: #ffffff;
+}
+
+.hero-button.secondary:hover {
+    background-color: #ff476f;
+}
+
+/* Responsive Design for Hero Section */
+@media (max-width: 768px) {
+    .hero-title {
+        font-size: 2.5rem;
+    }
+
+    .hero-description {
+        font-size: 1.2rem;
+    }
+
+    .hero-button {
+        font-size: 1rem;
+        padding: 12px 25px;
+    }
+}
+
+
+/* Section Toggle Buttons */
+.section-toggle {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.section-toggle button {
+    padding: 15px 30px;
+    margin: 10px;
+    border: none;
+    border-radius: 5px;
+    background: #61b187;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.section-toggle button:hover {
+    background: #61b187;
+    transform: scale(1.05);
+}
+
+.section-toggle button.active {
+    background: #61b187;
+}
+
+/* Content Section Styles */
+.content-section {
+    padding: 40px;
+    display: none;
+}
+
+.content-section.active {
+    display: block;
+}
+
+
+/* Section Heading Styles */
+.section-heading {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.section_text_p1 {
+    font-size: 24px;
+    font-weight: bold;
+    color: #61b187; /* Matching green color */
+    margin: 0;
+    transition: color 0.3s ease;
+}
+
+.section_text_p1:hover {
+    color: #ff476f;
+}
+
+.title {
+    font-size: 36px;
+    font-weight: bold;
+    color: #61b187; /* Matching green color */
+    margin: 10px 0;
+    transition: color 0.3s ease;
+}
+
+.title:hover {
+    color: #ff476f;
+}
+
+/* Enlarging the Icon */
+.details-container img.icon {
+    width: auto;  /* Maintain aspect ratio */
+    height: 80px; /* Set a fixed height for consistency */
+    margin-bottom: 15px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Flex container for proper alignment */
+.details-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    flex: 1;
+}
+
+/* About Us Section */
+.section-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.section__pic-container {
+    flex: 1;
+    min-width: 250px;
+    padding: 20px;
+    text-align: center;
+}
+
+.about-pic {
+    width: 100%;
+    border-radius: 20px;
+}
+
+.about-details-container {
+    flex: 2;
+    padding: 20px;
+}
+
+.about-containers {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.details-container h3 {
+    margin: 10px 0;
+    font-size: 1.2rem;
+}
+
+.details-container p {
+    font-size: 1rem;
+    color: #555;
+}
+
+.text-container {
+    flex: 3;
+}
+
+.text-container p {
+    font-size: 1.1rem;
+    color: #333;
+    transition: color 0.3s ease;
+}
+
+.text-container p:hover {
+    color: #45a049;
+}
+
+.icon.arrow {
+    width: 50px;
+    margin-top: 20px;
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    .section-container {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .about-details-container {
+        padding: 10px;
+    }
+}
+
+/* Style for the place cards */
+#recommendations {
+    display: flex;
+    flex-wrap: wrap; /* Allow cards to wrap across the page */
+    justify-content: space-around; /* Evenly space out the cards */
+    padding: 25px;
+    margin-top: 10px;
+}
+
+.place-card {
+    gap: 20px;
+    width: 250px; /* Adjust width as needed */
+    margin: 10px;
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s;
+    text-align: center;
+}
+
+.place-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 8px 12px rgba(0, 0, 0, 0.2);
+}
+
+.place-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+.place-card h3 {
+    margin: 10px 0;
+}
+
+.rating {
+    color: #ffd700;
+}
+
+/* Popup Overlay (Wider) */
+.popup-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+/* Popup Content - Wider */
+.popup-content {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    width: 700px; /* Wider popup */
+    max-width: 90%; /* Ensure it's not wider than the screen */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+#popupContent {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.popup-image {
+    width: 80px; /* Adjust image size */
+    height: 80px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.popup-description {
+    flex: 1;
+}
+
+.popup-content h2 {
+    margin-bottom: 20px;
+}
+
+.popup-content button {
+    padding: 10px 20px;
+    margin-top: 20px;
+    background-color: #61b187;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.popup-content button:hover {
+    background-color: #45a049;
+}
+
+/* Chatbot container */
+#chatbot-container {
+    position: fixed;
+    bottom: 80px;
+    right: 20px;
+    width: 300px;
+    height: 400px;
+    border: 1px solid #ccc;
+    background-color: white;
+    border-radius: 8px;
+    display: none;
+    flex-direction: column;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+#chatbot-header {
+    background-color: #007BFF;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+    position: relative;
+}
+
+#chatbot-close-btn {
+    position: absolute;
+    right: 10px;
+    top: 5px;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+#chatbot-messages {
+    flex-grow: 1;
+    padding: 10px;
+    overflow-y: auto;
+    background-color: #f9f9f9;
+    font-size: 14px;
+}
+
+#chatbot-input-container {
+    display: flex;
+    border-top: 1px solid #ddd;
+}
+
+#chatbot-input {
+    flex-grow: 1;
+    border: none;
+    padding: 10px;
+    outline: none;
+    margin-left: 10px;
+}
+
+#chatbot-send-btn {
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+}
+
+#chatbot-toggle-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 15px;
+    font-size: 16px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
+}
+
+/* Your existing CSS code... */
+
+.message {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+    max-width: 80%;
+}
+
+.user-message {
+    align-items: flex-end;
+    margin-left: 100px;
+}
+
+.bot-message {
+    align-items: flex-start;
+}
+
+.message-label {
+    font-size: 0.8rem;
+    color: #555;
+    margin-bottom: 5px;
+}
+
+.message-content {
+    padding: 10px;
+    max-width: 80%;
+    word-wrap: break-word;
+    border-radius: 10px;
+}
+
+.user-message .message-content {
+    background-color: #007BFF;
+    color: white;
+}
+
+.bot-message .message-content {
+    background-color: #f1f1f1;
+}

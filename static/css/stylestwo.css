@@ -1,0 +1,359 @@
+/* Global Styles */
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: 'Rubik', sans-serif;
+    box-sizing: border-box;
+}
+
+/* Header Styles */
+.top-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px; /* Padding for the compact header */
+    background-color: transparent; /* Transparent background */
+    position: fixed; /* Fixed position to enable hiding on scroll */
+    width: 65%; /* Header width */
+    top: 0; /* Make the header visible on initial load */
+    left: 50%; /* Center the header */
+    transform: translateX(-50%); /* Adjust the header to be centered */
+    z-index: 1000;
+    transition: top 0.3s; /* Smooth transition for hiding/showing */
+    height: 60px; /* Height for the compact header */
+    box-shadow: none; /* Removed shadow line */
+}
+
+.logo {
+    margin-right: 10px; /* Slightly reduced right margin */
+    display: flex;
+    align-items: center; /* Ensure the logo is centered vertically */
+}
+
+.logo img {
+    height: 40px; /* Reduced logo size to fit within the compact header */
+    width: auto;
+}
+
+.nav-buttons {
+    display: flex;
+    align-items: center; /* Center the navigation links vertically */
+}
+
+.nav-buttons a {
+    margin-left: 20px; /* Reduced margin for more compact spacing */
+    text-decoration: none;
+    color: #333;
+    font-size: 0.9rem; /* Slightly smaller font size for a compact look */
+    padding: 8px 12px; /* Reduced padding inside the navigation links */
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.nav-buttons a:hover {
+    background-color: #f4f4f4;
+}
+
+/* Hero Section */
+.hero {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px 20px 0 20px;
+    position: relative;
+    z-index: 1;
+    margin-top: 60px; /* Adjusted for the fixed header height */
+}
+
+.image-container {
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    border-radius: 20px;
+    width: 90%;
+    height: 45vh;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin: 0 auto;
+    overflow: visible;
+}
+
+.image-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.00); /* Dark overlay */
+    z-index: 0;
+    border-radius: 20px;
+}
+
+.hero-text {
+    text-align: center;
+    color: white;
+    position: absolute;
+    top: 20%;
+    width: 100%;
+}
+
+.hero-text h1 {
+    font-size: 2.5rem; /* Adjust size as needed */
+    font-weight: 700;
+    color: white;
+    text-align: center;
+    letter-spacing: 2px; /* Optional: Adds spacing between letters */
+    text-shadow: 
+        2px 2px 4px rgba(0, 0, 0, 0.5),   /* Outer shadow for emboss effect */
+        -1px -1px 2px rgba(255, 255, 255, 0.3), /* Inner shadow for emboss effect */
+        1px 1px 3px rgba(0, 0, 0, 0.3);   /* Soft shadow for depth */
+}
+
+.hero-text h2 {
+    font-size: 2rem;
+    margin: 0;
+    margin-top: 0.5rem;
+}
+
+.hero-text p {
+    font-size: 1.2rem;
+    margin-top: 1rem;
+}
+
+/* Search Bar Styles */
+.search-bar {
+    position: absolute;
+    bottom: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40%;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    padding: 10px;
+    box-sizing: border-box;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 2;
+    font-family: 'Rubik', sans-serif; /* Ensure Rubik font is applied */
+}
+
+.search-bar input {
+    position: absolute;
+    transform: translateX(-55%);
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 70%;
+}
+
+.search-bar button {
+    position: relative;
+    transform: translateX(300%);
+    padding: 10px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    background-color: #61b187;
+    color: white;
+    cursor: pointer;
+    font-family: 'Rubik', sans-serif; /* Ensure Rubik font is applied */
+}
+
+.search-bar button:hover {
+    background-color: #ff476f;
+}
+
+
+/* Blog section container */
+.blogs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+/* Blog card style */
+.blog-card {
+    display: flex;
+    flex-direction: row;
+    width: 80%;
+    margin: 20px 0;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    background-color: #fff;
+}
+
+/* Blog card content: Image and Text */
+.blog-card-content {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.blog-image {
+    width: 30%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+/* Blog info section (right of the image) */
+.blog-info {
+    padding: 20px;
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* Short and full description */
+.short-desc {
+    font-size: 14px;
+    color: #555;
+}
+
+.full-desc {
+    font-size: 14px;
+    color: #333;
+}
+
+/* Read more/less button */
+.read-more-btn {
+    background-color: #61b187;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.read-more-btn:hover {
+    background-color: #61b18800;
+}
+
+.full-desc {
+    display: none; /* Initially hide the full description */
+}
+
+/* Recommendations Section Styles */
+
+#recommendations {
+    margin-top: 60px; /* Adjust the value for desired space */
+    text-align: center; /* Center the recommendations heading */
+}
+
+.recommendations-container {
+    display: flex;
+    flex-direction: column; /* Stack cards vertically */
+    align-items: center; /* Center align cards */
+    gap: 20px;
+    padding: 20px;
+}
+
+.recommendation-heading {
+    font-size: 2rem; /* Adjust font size as needed */
+    font-weight: bold;
+    margin-bottom: 20px; /* Add some margin for spacing */
+}
+
+
+.recommendation-card {
+    display: flex;
+    align-items: center;
+    width: 90%; /* Slightly less wide */
+    max-width: 1200px; /* Limit max width for larger screens */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    background-color: #fff;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.recommendation-card:hover {
+    transform: scale(1.02);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.card-image {
+    flex: 0 0 200px; /* Reduced image width */
+    height: 160px; /* Adjusted height */
+    background-size: cover;
+    background-position: center;
+}
+
+.card-content {
+    flex: 1; /* Take up remaining space */
+    padding: 20px;
+    text-align: left;
+}
+
+.card-content h3 {
+    font-size: 20px;
+    margin: 0 0 10px;
+    color: #61b187;
+}
+
+.card-content p {
+    margin: 5px 0;
+    color: #555;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+.card-description {
+    position: relative;
+}
+
+.read-more-btn {
+    background: none;
+    border: none;
+    color: #61b187;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    margin-left: 5px;
+    padding: 0;
+    text-decoration: underline;
+    transition: color 0.2s ease;
+}
+
+.read-more-btn:hover {
+    color: #ff476f;
+}
+
+.read-more {
+    color: #61b187;
+    font-weight: bold;
+    cursor: pointer;
+    display: inline-block;
+    margin-top: 10px;
+    text-decoration: none;
+}
+
+
+.card-description.expanded {
+    max-height: 100%; /* Allow full height when expanded */
+    overflow: visible;
+}
+
+/* Magenta Button Style */
+button {
+    background-color: #61b187;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #ff476f;
+}
+
+
