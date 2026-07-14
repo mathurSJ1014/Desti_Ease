@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anticipated City Recommendations</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/stylesthree.css') }}">
+</head>
+<body>
+    <!-- Background Image -->
+    <div class="background" style="background-image: url('{{ url_for('static', filename='imagesthree/backgroundtwo.jpg') }}');"></div>
+
+    <!-- Header Section -->
+    <header>
+        <div class="nav-left">
+            <!-- Logo with redirect to homepage -->
+            <a href="{{ url_for('index') }}">
+                <img src="{{ url_for('static', filename='imagesthree/slogotwo.png') }}" alt="Logo" class="logo">
+            </a>
+        </div>
+        <div class="nav-right">
+            <!-- Home button with redirect to homepage -->
+            <a href="{{ url_for('index') }}">Home</a>
+            <a href="#">About Us</a>
+            <a href="#">Explore</a>
+            <a href="#">Activity</a>
+            <a href="#">Login/Signup</a>
+        </div>
+    </header>
+
+    <!-- Form Section -->
+    <div class="form-section">
+        <h1 class="animated-heading">Anticipated City Predictions</h1>
+
+        <div class="form-container">
+            <form method="POST">
+                <label for="temperature"><strong>Temperature</strong></label>
+                <div class="slider-label">
+                    <span>Low</span>
+                    <span>High</span>
+                </div>
+                <input type="range" id="temperature" name="temperature" min="0" max="50" step="1">
+
+                <label for="humidity"><strong>Humidity</strong></label>
+                <div class="slider-label">
+                    <span>Low</span>
+                    <span>High</span>
+                </div>
+                <input type="range" id="humidity" name="humidity" min="0" max="100" step="1">
+
+                <label for="traffic"><strong>Traffic</strong></label>
+                <div class="slider-label">
+                    <span>Low</span>
+                    <span>High</span>
+                </div>
+                <input type="range" id="traffic" name="traffic" min="1" max="10" step="1">
+
+                <label for="terrain"><strong>Terrain</strong></label>
+                <select id="terrain" name="terrain" required>
+                    <option value="1">Urban</option>
+                    <option value="2">Plains</option>
+                    <option value="3">Hills</option>
+                </select>
+
+                <label for="season"><strong>Seasons:</strong></label>
+                <select id="season" name="season" required>
+                    <option value="Winter">Winter</option>
+                    <option value="Summer">Summer</option>
+                    <option value="Monsoon">Monsoon</option>
+                </select>
+
+                <label for="budget"><strong>Budget</strong></label>
+                <select id="budget" name="budget" required>
+                    <option value="luxury">Luxury</option>
+                    <option value="moderate">Moderate</option>
+                    <option value="economical">Economical</option>
+                </select>
+
+                <label for="month"><strong>Month</strong></label>
+                <select id="month" name="month" required>
+                    <option value="1">January</option>
+                    <option value="2">February</option>
+                    <option value="3">March</option>
+                    <option value="4">April</option>
+                    <option value="5">May</option>
+                    <option value="6">June</option>
+                    <option value="7">July</option>
+                    <option value="8">August</option>
+                    <option value="9">September</option>
+                    <option value="10">October</option>
+                    <option value="11">November</option>
+                    <option value="12">December</option>
+                </select>
+
+                <button type="submit" id="recommend-btn">Get Predictions</button>
+            </form>
+        </div>
+
+        <div class="results-container">
+            {% if city_data %}
+                <h2>Top Predicted Cities</h2>
+                <ul>
+                    {% for city in city_data %}
+                    <li class="city-card">
+                        <!-- City Image -->
+                        <img src="{{ city.image_url }}" alt="{{ city.name }}" class="city-image">
+        
+                        <!-- City Details -->
+                        <div class="city-details">
+                            <h3>{{ city.name }}</h3>
+                            <p class="city-description">
+                                {{ city.description }}
+                            </p>
+
+                            <div class="read-more-container">
+                                <span class="read-more" onclick="toggleReadMore(this)">Read More</span>
+                                <button class="generate-itinerary-btn" onclick="generateItinerary('{{ city.name }}')">Generate Itinerary</button>
+                            </div>
+        
+                            <!-- Weather Information -->
+                            <div class="city-weather">
+                                <h4>7-Day Weather Forecast</h4>
+                                {% if city.weather_forecast %}
+                                    <div class="weather-forecast-container">
+                                        {% for day in city.weather_forecast %}
+                                        <div class="weather-day">
+                                            <div class="weather-icon">
+                                                <img src="{{ day.icon }}" alt="Weather Icon">
+                                            </div>
+                                            <div class="weather-details">
+                                                <div class="temp-range">
+                                                    <span class="temp-min">{{ day.temp_min }}°C</span>
+                                                    <span class="temp-max">{{ day.temp_max }}°C</span>
+                                                </div>
+                                                <div class="weather-description">
+                                                    {{ day.description }}
+                                                </div>
+                                            </div>
+                                            <div class="weather-date">
+                                                {{ day.date }}
+                                            </div>
+                                        </div>
+                                        {% endfor %}
+                                    </div>
+                                {% else %}
+                                    <p>Weather forecast not available</p>
+                                {% endif %}
+                            </div>
+        
+                            <!-- Read More Button and Generate Itinerary -->
+                            
+                        </div>
+                    </li>
+                    {% endfor %}
+                </ul>
+            {% elif error %}
+                <p class="error-message">Error: {{ error }}</p>
+            {% else %}
+                <p>Fill out the form to get predictions.</p>
+            {% endif %}
+        </div>
+    </div>
+
+    <div id="itinerary-popup" class="popup hidden">
+        <div class="popup-content">
+            <span class="popup-close" onclick="closePopup()">&times;</span>
+            <h2>City Itinerary</h2>
+            <div id="itinerary-details"></div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/scriptthree.js') }}"></script>
+</body>
+</html>

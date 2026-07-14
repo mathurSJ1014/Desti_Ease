@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>City Recommendations</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/stylestwo.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        .card-description {
+            display: inline;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="top-nav">
+        <a href="/" class="logo">
+            <img src="{{ url_for('static', filename='imagestwo/logo.png') }}" alt="Logo">
+        </a>
+        <nav class="nav-buttons">
+            <a href="/">Home</a>
+            <a href="/about">About Us</a>
+            <a href="/explore">Explore</a>
+            <a href="/random">Random</a>
+            <a href="/login">Login/Signup</a>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="image-container" style="background-image: url('{{ url_for('static', filename='imagestwo/banner.jpg') }}');">
+            <div class="hero-text">
+                <h1>Find Your Next Destination</h1>
+                <h2>Discover Top Cities</h2>
+                <p>Explore the best places to visit</p>
+            </div>
+            <div class="search-bar">
+                <form action="/recommendations" method="POST" id="search-form">
+                    <input type="text" name="city" id="search-input" placeholder="What's on your mind?" required>
+                    <button type="submit" id="search-btn">Search</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+<!-- Recommendations Section -->
+{% if city %}
+<section id="recommendations">
+    <h2 class="recommendation-heading">Travelers from {{ city }} recommend</h2>
+    <div class="recommendations-container">
+        {% for index, row in recommendations.iterrows() %}
+        <div class="recommendation-card">
+            <div class="card-image" style="background-image: url('{{ url_for('static', filename='city_images/' + row['City'] + '.jpg') }}');"></div>
+            <div class="card-content">
+                <h3>{{ row['City'] }}</h3>
+                <p><strong>Ratings:</strong> {{ row['Ratings'] }}</p>
+                <p><strong>Ideal Duration:</strong> {{ row['Ideal_duration'] }}</p>
+                <p><strong>Best Time to Visit:</strong> {{ row['Best_time_to_visit'] }}</p>
+                <p class="card-description">
+                    {% set city_desc = row['City_desc'] %}
+                    {% set cleaned_desc = city_desc | replace('[','') | replace(']','') | replace(';','') | replace(',','') | replace("'" , '') | replace('"','') %}
+                    <span class="short-desc">{{ cleaned_desc | truncate(150) }}</span>
+                    <span class="full-desc" style="display: none;">{{ cleaned_desc }}</span>
+                    <button class="read-more-btn">Read More</button>
+                </p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+{% endif %}
+
+
+    <!-- Blog Section (if needed) -->
+    <section id="blogs" class="blogs">
+        <!-- Blog posts can be dynamically inserted here if needed -->
+    </section>
+
+    <!-- JavaScript File -->
+    <script src="{{ url_for('static', filename='js/scripttwo.js') }}"></script>
+</body>
+</html>

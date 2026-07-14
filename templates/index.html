@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Destiease - Travel Made Easy</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/mediaqueries.css') }}">
+</head>
+
+<body>
+    <header>
+        <div class="logo">
+            <a href="#hero">
+                <img src="{{ url_for('static', filename='images/slogo.png') }}" alt="Destiease Logo" class="logo-img">
+            </a>
+        </div>
+        <nav id="desktop-nav">
+            <ul class="nav-links">
+                <li><a href="#hero">Home</a></li>
+                <li><a href="#about-us">About Us</a></li>
+                <li><a href="#recommendations">Explore</a></li>
+                <li><a href="#activity">Activity</a></li>
+                <li><a href="#contact" class="login-signup">Login/Signup</a></li>
+            </ul>
+        </nav>
+        <nav id="hamburger-nav">
+            <div class="hamburger-menu">
+                <div class="hamburger-icon" onclick="toggleMenu()">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <div class="menu-links">
+                    <li><a href="#hero" onclick="toggleMenu()">Home</a></li>
+                    <li><a href="#about-us" onclick="toggleMenu()">About Us</a></li>
+                    <li><a href="#recommendations" onclick="toggleMenu()">Explore</a></li>
+                    <li><a href="#activity" onclick="toggleMenu()">Activity</a></li>
+                    <li><a href="#contact" class="login-signup" onclick="toggleMenu()">Login/Signup</a></li>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <section class="hero" style="background-image: url('{{ url_for('static', filename='images/background.jpg') }}');">
+        <div class="hero-content">
+            <h1 class="hero-title">Discover Your Next Adventure</h1>
+            <p class="hero-description">Explore breathtaking cities and find your next destination.</p>
+            <div class="hero-actions">
+                <a href="{{ url_for('recommendations') }}" class="hero-button">Get Recommendations</a>
+                <a href="{{ url_for('predict') }}" class="hero-button secondary">Anticipated?</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="recommendations" class="content-section active">
+        <!-- Beach Category Card -->
+        <div class="place-card" id="beaches-card">
+            <img src="{{ url_for('static', filename='images/beach.jpg') }}" alt="Beach">
+            <h3>Beaches</h3>
+            <div class="rating">★★★★★</div>
+        </div>
+    
+        <!-- Mountains Category Card -->
+        <div class="place-card" id="mountains-card">
+            <img src="{{ url_for('static', filename='images/mountains.jpeg') }}" alt="Mountains">
+            <h3>Mountains</h3>
+            <div class="rating">★★★★★</div>
+        </div>
+    
+        <!-- Desert Category Card -->
+        <div class="place-card" id="desert-card">
+            <img src="{{ url_for('static', filename='images/desert.jpg') }}" alt="Desert">
+            <h3>Desert</h3>
+            <div class="rating">★★★★☆</div>
+        </div>
+    
+        <!-- Plains Category Card -->
+        <div class="place-card" id="plains-card">
+            <img src="{{ url_for('static', filename='images/plains.jpg') }}" alt="Plains">
+            <h3>Plains</h3>
+            <div class="rating">★★★★☆</div>
+        </div>
+    
+        <!-- Hills Category Card -->
+        <div class="place-card" id="hills-card">
+            <img src="{{ url_for('static', filename='images/hills.jpg') }}" alt="Hills">
+            <h3>Hills</h3>
+            <div class="rating">★★★★★</div>
+        </div>
+    </section>
+    
+    <!-- Popup Overlay (Initially Hidden) -->
+    <div id="popupOverlay" class="popup-overlay">
+        <div class="popup-content">
+            <h2 id="popupTitle">Place Details</h2>
+            <div id="popupContent">
+                <img id="popupImage" src="" alt="" class="popup-image" style="display:none;">
+                <div id="popupDescription" class="popup-description"></div>
+            </div>
+            <button id="closePopup">Close</button>
+        </div>
+    </div>
+    
+    
+
+    <section id="about-us" class="content-section active">
+        <div class="section-heading">
+            <p class="section_text_p1">Get To Know More</p>
+            <h2 class="title">About Us</h2>
+        </div>
+        <div class="section-container">
+            <div class="section__pic-container">
+                <img src="{{ url_for('static', filename='images/about us.jpg') }}" alt="Destiease Logo" class="about-pic">
+            </div>
+            <div class="about-details-container">
+                <div class="about-containers">
+                    <div class="details-container">
+                        <img src="{{ url_for('static', filename='images/slogo.png') }}" alt="Destiease Icon" class="icon">
+                    </div>
+                </div>
+                <div class="text-container">
+                    <p>Destiease aims to revolutionize travel planning through advanced technology and personalized experiences. Our objectives include:</p>
+                    <ul>
+                        <li><strong>Identify Traffic Trends:</strong> Examining past traffic data to strategize route planning.</li>
+                        <li><strong>Craft Comprehensive Itineraries:</strong> Employing a recommendation engine for diverse activity suggestions.</li>
+                        <li><strong>Integrate Weather Forecast:</strong> Equipping users with real-time weather updates for wise planning.</li>
+                        <li><strong>Implement Dynamic Budget Management:</strong> Dividing travel budgets for real-time tracking and adjustment.</li>
+                        <li><strong>Provide Personalized Assistance:</strong> Functioning as a personalized travel assistant, offering tailored recommendations and automated packages for enhanced user experience.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="prediction" class="content-section" style="display: none;">
+        <h2>Prediction</h2>
+        <p>Here we could use some predictive algorithm to suggest personalized destinations.</p>
+    </section>
+
+    <section id="contact" class="content-section">
+        <h2>Get in Touch</h2>
+        <form id="contact-form">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" required></textarea>
+
+            <button type="submit">Submit</button>
+        </form>
+        <p id="form-response" style="display: none;"></p>
+    </section>
+
+
+    <!-- Chatbot UI -->
+<div id="chatbot-container">
+    <div id="chatbot-header">
+        <span>DestiEase</span>
+        <button id="chatbot-close-btn">&times;</button>
+    </div>
+    <div id="chatbot-messages"></div>
+    <div id="chatbot-input-container">
+        <input type="text" id="chatbot-input" placeholder="Ask me anything about your trip..." />
+        <button id="chatbot-send-btn">Send</button>
+    </div>
+</div>
+<button id="chatbot-toggle-btn">Chat with AI Assistant</button>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+
+</body>
+
+</html>
